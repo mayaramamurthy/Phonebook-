@@ -26,7 +26,7 @@ public class GUI
 	static JLabel lblTitle2, lblTitle3, lblInfo3;
 	static JLabel n1, p1, a1, n2, p2, a2, n3, p3, a3, n4, p4 , a4, n5, p5,a5, n6, p6, a6, n7, p7,a7, n8, p8,  a8,n9, p9,a9, n10,  p10,a10;
 	static JLabel names [] = new JLabel [10], addresses[] = new JLabel [10], phone [] = new JLabel [10];
-	static JTextField txtInput1, txtInput9a, txtInput9b, txtInput9c, txtInput9d, txtInput9e, txtInput9f, txtInput12;
+	static JTextField txtInput1, txtInput9a, txtInput9b, txtInput9c, txtInput9d, txtInput9e, txtInput9f,txtInput11a, txtInput11b, txtInput11c, txtInput11d, txtInput11e, txtInput11f, txtInput12;
 	static int realPass = 1234, counter = 1;
 	static JFrame frame1 = new JFrame ("Phonebook+ Intro");
 	static JFrame frame2 = new JFrame ("Navigation - Frame 2");
@@ -40,6 +40,7 @@ public class GUI
 	static JFrame frame10 = new JFrame ("Modify Contacts");
 	static JFrame frame11 = new JFrame ("Edit Contacts");
 	static JFrame frame12 = new JFrame ("Delete Contacts");
+	static JFrame frame13 = new JFrame ("Delete Contacts");
 
 	
 	static Contact contact = new Contact();
@@ -278,7 +279,7 @@ public class GUI
 		
 		frame4.getContentPane ().add(main4);
 		frame4.setSize(1500,1000);
-		frame4.setVisible (true);
+		frame4.setVisible (false);
 		
 		//***************************************************
 		// Frame 5 - Search Screen
@@ -490,9 +491,8 @@ public class GUI
 		btnDelete10 = new JButton ("Delete Contacts");
 		btnExit10 = new JButton ("Back");
 
-		//ButtonHandler3 for frame 3
-		ButtonHandler9 onClick10 = new ButtonHandler9 ();
-		
+		//ButtonHandler9 for frame `10
+		ButtonHandler9 onClick10 = new ButtonHandler9 ();		
 		btnEdit10.addActionListener (onClick10);
 		btnDelete10.addActionListener (onClick10);
 		btnExit10.addActionListener (onClick10);
@@ -510,7 +510,72 @@ public class GUI
 	
 
 	//***************************************************
-	// Frame 10 - Modify Contacts screen
+	// Frame 11 - Modify Contacts screen
+		
+		JPanel panel11a = new JPanel (new GridLayout (2, 4, 2, 5)); // you must have at least 1 panel for your object
+		JPanel panel11b = new JPanel (new GridLayout (2, 4, 2, 5)); // you must have at least 1 panel for your object
+		JPanel panel11c = new JPanel (new GridLayout (2, 1, 2, 5)); // you must have at least 1 panel for your object
+		JPanel main11 = new JPanel(new GridLayout (5, 1));
+		JLabel lblTitle11 = new JLabel ("Enter Contact To Modify", JLabel.CENTER);
+		lblTitle11.setFont (new Font ("Serif", Font.BOLD, 24));
+
+		JButton btnExit11 = new JButton ("Back");
+		JButton btnMod11 = new JButton ("Make Changes");
+		
+		//ButtonHandler11 for frame 11
+		ButtonHandler11 onClick11 = new ButtonHandler11 ();		
+		btnMod11.addActionListener (onClick11);
+		btnExit11.addActionListener (onClick11);
+		
+		JLabel lbl11a = new JLabel ("First Name"); // text on label
+		JLabel lbl11b = new JLabel ("Last Name"); // text on label
+		JLabel lbl11c = new JLabel ("Phone Number"); // text on label
+		JLabel lbl11d = new JLabel ("Address"); // text on label
+		JLabel lbl11e = new JLabel ("City"); // text on label
+		JLabel lbl11f = new JLabel ("State"); // text on label
+		JLabel lbl11g = new JLabel (""); // text on label
+		JLabel lbl11h = new JLabel (""); // text on label
+		JLabel lbl11j = new JLabel (""); // text on label
+		JLabel lbl11i = new JLabel (""); // text on label
+		
+
+		txtInput11a = new JTextField ("");
+		txtInput11b = new JTextField ("");
+		txtInput11c = new JTextField ("");
+		txtInput11d = new JTextField ("");
+		txtInput11e = new JTextField ("");
+		txtInput11f = new JTextField ("");
+		
+		main11.add (lblTitle11); // add the button to the panel frame first
+		panel11a.add(lbl11a); // add label to panel
+		panel11a.add (txtInput11a); // add the button to the panel frame first
+		panel11a.add(lbl11b); // add label to panel
+		panel11a.add (txtInput11b); // add the button to the panel frame first
+		panel11a.add(lbl11c); // add label to panel
+		panel11a.add (txtInput11c); // add the button to the panel frame first
+		panel11a.add(lbl11d); // add label to panel
+		panel11a.add (txtInput11d); // add the button to the panel frame first
+		
+		panel11b.add(lbl11e); // add label to panel
+		panel11b.add (txtInput11e); // add the button to the panel frame first
+		panel11b.add(lbl11f); // add label to panel
+		panel11b.add (txtInput11f); // add the button to the panel frame first
+		panel11b.add(lbl11g); // add label to panel
+		panel11b.add(lbl11h); // add label to panel
+		panel11b.add(lbl11j); // add label to panel
+		panel11b.add(lbl11i); // add label to panel
+		panel11c.add (btnMod11); // add the button to the panel frame first
+		panel11c.add (btnExit11); // add the button to the panel frame first
+		
+		main11.add(panel11a);
+		main11.add(panel11b);
+		main11.add(panel11c);
+		
+		// sets frame size
+		frame11.getContentPane ().add(main11);
+		frame11.setSize(800,500);
+		frame11.setVisible (false);
+	
 	
 	//***************************************************
 	// Frame 12 - Delete Contact screen
@@ -665,6 +730,9 @@ public class GUI
 			if (text3.equals("Enter"))
 			{
 				System.out.println(txtInput9a.getText());
+				// get the text from the name textfield for the key
+				// call on the other text boxes for the value (see below with the concat)
+				// call get with number as key (I think?) as such phonebook.display(Key key)
 			}
 			else if (text3.equals ("Back"))
 			{
@@ -681,8 +749,9 @@ public class GUI
 			String text3 = e.getActionCommand();
 			if (text3.equals("Enter"))
 			{
-				//frame.setVisible(false);
-				//frame6.setVisible(true);
+				// get the text from the number textfield for the key
+				// call on the other text boxes for the value (see below with the concat)
+				// call get with number as key (I think?) as such phonebook.display(Key key)
 			}
 			else if (text3.equals ("Back"))
 			{
@@ -747,6 +816,27 @@ public class GUI
 			{
 				frame10.setVisible (false);
 				frame8.setVisible (true);
+			}
+		}
+	}
+	// ButtonHandler 11 - for modify screen section
+	public static class ButtonHandler11 implements ActionListener
+	{
+		public void actionPerformed (ActionEvent e)
+		{
+			String text3 = e.getActionCommand();
+			if (text3.equals("Make Changes")) // makes the given changes
+			{
+				// get the text from the first name textbook for the key
+				// call on the other text boxes for the value (see below with the concat)
+				// call modify as a similar way: phonebook.Modify(key, value)
+				// shall add the value
+			}
+			// allows you to go back to the prior screen
+			else if (text3.equals ("Back"))
+			{
+				frame11.setVisible (false);
+				frame10.setVisible (true);
 			}
 		}
 	}
