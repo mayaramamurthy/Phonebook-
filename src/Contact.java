@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Contact implements Comparable<Contact> {
@@ -85,11 +86,9 @@ public class Contact implements Comparable<Contact> {
 				+ "," + this.address + "," + this.city + "," + this.state + "}";
 	}
 
-	public static class Modifications<Key extends Comparable<Key>, Value> { // the
-																		// binarysearchtree
-																		// class
-		private Node root; // the root is the first node
-
+	public static class Modifications<Key extends Comparable<Key>, Value> { // the binarysearchtree class
+		private Node root,r; // the root is the first node
+		public ArrayList find = new ArrayList ();
 		private class Node {
 			private Key key; // declares the key
 			private Value val;// declares the value
@@ -189,19 +188,22 @@ public class Contact implements Comparable<Contact> {
 			return x;
 		}
 
-		public void put(Key key, Value val) {// puts a value at a specific key
+		public Node put(Key key, Value val) {// puts a value at a specific key
 			root = sort(root, key, val);
+			return root;
 		}
 
 		public Node sort(Node x, Key key, Value val) { //
-			if (x == null)
-				return new Node(key, val, 1);// if it is the first node it
-												// creates a new node as a root
+			if (x == null){
+				return new Node(key, val, 1);// if it is the first node it creates a new node as a root
+			}
 			int compare = key.compareTo(x.key);// compares the keys
 			if (compare < 0)
-				x.left = sort(x.left, key, val);// goes to the left if less
+				if (x.left == null){x.left = new Node (key, val, x.N);}
+				else{x.left = sort(x.left, key, val);}// goes to the left if less
 			else if (compare > 0)
-				x.right = sort(x.right, key, val);// goes to the right if
+				if (x.right == null){x.right = new Node (key, val, x.N);}
+				else{x.right = sort(x.right, key, val);}// goes to the right if
 													// greater
 			else
 				x.val = val;
@@ -221,6 +223,22 @@ public class Contact implements Comparable<Contact> {
 			delete(key);
 			put(key, value);
 		}
+		
+		public ArrayList findAll (Key y){
+			find.clear();
+			return searchAll(root, y);
+			
+		}
+		
+		public ArrayList searchAll (Node x, Key key){
+			if (((String) x.key).contains((CharSequence) key)){
+				find.add(x.key + " " + get(x.key));
+			}
+			if (x.left != null){searchAll(x.left, key);}
+			if (x.right != null){searchAll(x.right, key);}
+			return find;
+			
+		}
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -231,24 +249,32 @@ public class Contact implements Comparable<Contact> {
 		File nameFile = new File("data/contact.txt");
 		Scanner hf = new Scanner(nameFile);
 		String toaddd = hf.nextLine();
-		String search = "Thom";
-		String todelete = "Amal";
-		String todisplay = "Hana";
+		String search = "Jane", l = "Aaron";
+		String todelete = "Abe";
+		String todisplay = "Abe";
 		for (int i = 0; i < nameFile.length(); i++) {
 			while (hf.hasNext()) {
 				String toadds = hf.nextLine();
 				String[] n = toadds.split(",");
-				String first = n[1].split(" ")[0];
-				String last = n[1].split(" ")[1];
-				String insert = last.concat("," + n[2]).concat("," + n[3]).concat("," + n[4]);
+				String first = n[0].split(" ")[0];
+				String last = n[0].split(" ")[1];
+				String insert = last.concat("," + n[1]).concat("," + n[2]).concat("," + n[3]).concat("," + n[4]);
 				// String to=new
 				// Contact(n[0],n[1],Double.parseDouble(n[2]),n[3],n[4],n[5]);
 				phonebook.put(first, insert);
+				l = first;
 			}
 		}
-
+		System.out.println(l.toString() + " " + phonebook.get(l));
 		System.out.println(search.concat("," + phonebook.get(search)));
+		System.out.println(phonebook.get("Jane"));
+		System.out.println(phonebook.get(todelete));
 		phonebook.delete(todelete);
+		System.out.println(phonebook.get(todelete));
 		phonebook.display(todisplay);
+		ArrayList find = phonebook.findAll("Z");
+		for (int i = 0; i < find.size();i ++){
+			System.out.println(find.get(i));
+		}
 	}
 }

@@ -35,7 +35,7 @@ public class makeContact {
 		String [][] postal = new String [1084][2];
 		String [] temp = new String [3];
 		String [] phone = new String [1084];
-		contact =  new String[260][6];
+		contact =  new String[259][6];
 		String []  pnumbers =  new String[60];
 		
 		
@@ -92,7 +92,7 @@ public class makeContact {
 			int x = (int) Math.round(Math.random() * 1083);
 			contact[i][4] = postal[x][0];	// generates city
 			contact[i][5] = postal[x][1];	// generates state
-			System.out.println(contact[i][0]);
+			//System.out.println(contact[i][0]);
 		//	System.out.println(contact[i][0] +  " " + contact [i][1] +  " " + contact [i][2] +  " " + contact [i][3]+  " " + contact [i][4]+  " " + contact [i][5]);
 		}
 		return contact;

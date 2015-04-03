@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.ImageIcon;
@@ -26,7 +27,7 @@ public class GUI
 	static JLabel lblTitle2, lblTitle3, lblInfo3;
 	static JLabel n1, p1, a1, n2, p2, a2, n3, p3, a3, n4, p4 , a4, n5, p5,a5, n6, p6, a6, n7, p7,a7, n8, p8,  a8,n9, p9,a9, n10,  p10,a10;
 	static JLabel names [] = new JLabel [10], addresses[] = new JLabel [10], phone [] = new JLabel [10];
-	static JTextField txtInput1, txtInput9a, txtInput9b, txtInput9c, txtInput9d, txtInput9e, txtInput9f,txtInput11a, txtInput11b, txtInput11c, txtInput11d, txtInput11e, txtInput11f, txtInput12;
+	static JTextField txtInput1, txtInput9a, txtInput9b, txtInput9c, txtInput9d, txtInput9e, txtInput9f,txtInput11a, txtInput11b, txtInput11c, txtInput11d, txtInput11e, txtInput11f, txtInput12, getContact11;
 	static int realPass = 1234, counter = 1;
 	static JFrame frame1 = new JFrame ("Phonebook+ Intro");
 	static JFrame frame2 = new JFrame ("Navigation - Frame 2");
@@ -185,12 +186,15 @@ public class GUI
 		JPanel panel4j = new JPanel (new GridLayout(0,2));
 		JPanel panel4k = new JPanel (new GridLayout(0,2));
 		JPanel panel4l = new JPanel (new GridLayout(0,2));
+		JPanel panel4m = new JPanel (new GridLayout(0,6));
+		JPanel panel4n = new JPanel (new GridLayout(3,1));
 		
 		JPanel main4 = new JPanel (new GridLayout(8,1));
 		
 		JButton A = new JButton ("A"),B = new JButton ("B"), C = new JButton ("C"), D = new JButton ("D"),E = new JButton ("E"),F = new JButton ("F"),G = new JButton ("G"),H = new JButton ("H"),I = new JButton ("I"),J = new JButton ("J"),K = new JButton ("K"),L = new JButton ("L"),M = new JButton ("M"),N = new JButton ("N");
 		JButton O = new JButton ("O"),P = new JButton ("P"),Q = new JButton ("Q"),R = new JButton ("R"),S = new JButton ("S"),T = new JButton ("T"),U = new JButton ("U"),V = new JButton ("V"),W = new JButton ("W"),X = new JButton ("X"),Y = new JButton ("Y"),Z = new JButton ("Z");
-
+		JButton exit4 = new JButton ("Back");
+		
 		ButtonHandler13 onClick4 = new ButtonHandler13 ();
 		A.addActionListener (onClick4); B.addActionListener (onClick4); C.addActionListener (onClick4);
 		D.addActionListener (onClick4); E.addActionListener (onClick4); F.addActionListener (onClick4);
@@ -200,7 +204,7 @@ public class GUI
 		P.addActionListener (onClick4); Q.addActionListener (onClick4); R.addActionListener (onClick4);
 		S.addActionListener (onClick4); T.addActionListener (onClick4); U.addActionListener (onClick4);
 		V.addActionListener (onClick4); W.addActionListener (onClick4); X.addActionListener (onClick4);
-		Y.addActionListener (onClick4); Z.addActionListener (onClick4); 
+		Y.addActionListener (onClick4); Z.addActionListener (onClick4); exit4.addActionListener (onClick4); 
 		
 		JLabel name4a = new JLabel ("Name"); name4a.setFont (new Font ("Serif", Font.BOLD, 15));
 		JLabel numb4a = new JLabel ("Number"); numb4a.setFont (new Font ("Serif", Font.BOLD, 15));
@@ -209,6 +213,8 @@ public class GUI
 		JLabel numb4b = new JLabel ("Number"); numb4b.setFont (new Font ("Serif", Font.BOLD, 15));
 		JLabel addr4b = new JLabel ("Address"); addr4b.setFont (new Font ("Serif", Font.BOLD, 15));
 		JLabel b1 = new JLabel (""); JLabel b2 = new JLabel ("");
+		JLabel b3 = new JLabel (""); JLabel b4 = new JLabel ("");
+		JLabel b5 = new JLabel (""); JLabel b6 = new JLabel ("");
 		
 		for (int i = 0; i < 10; i ++){
 			names [i] = new JLabel (""); names[i].setFont (new Font ("Serif", Font.BOLD, 12));
@@ -260,6 +266,7 @@ public class GUI
 		panel4j.add(p8); panel4j.add(addresses[7]);
 		panel4k.add(p9); panel4k.add(addresses[8]);
 		panel4l.add(p10); panel4l.add(addresses[9]);
+		panel4m.add(b3);panel4m.add(b4);panel4m.add(exit4);
 		
 		JPanel panelM4a = new JPanel (new GridLayout(0,2));  JPanel panelM4b = new JPanel (new GridLayout(0,2));
 		JPanel panelM4c = new JPanel (new GridLayout(0,2));  JPanel panelM4d = new JPanel (new GridLayout(0,2));
@@ -274,11 +281,12 @@ public class GUI
 		panelM4c.add(panel4g);  panelM4c.add(panel4h);
 		panelM4d.add(panel4i); 	panelM4d.add(panel4j);
 		panelM4e.add(panel4k); 	panelM4e.add(panel4l);
-		
-		main4.add(panelM4a); main4.add(panelM4b); main4.add(panelM4c); main4.add(panelM4d); main4.add(panelM4e);
+		panel4n.add(b5);	panel4n.add(b6);
+		panel4n.add(panel4m);
+		main4.add(panelM4a); main4.add(panelM4b); main4.add(panelM4c); main4.add(panelM4d); main4.add(panelM4e); main4.add(panel4n);
 		
 		frame4.getContentPane ().add(main4);
-		frame4.setSize(1500,1000);
+		frame4.setSize(1500,700);
 		frame4.setVisible (false);
 		
 		//***************************************************
@@ -512,20 +520,28 @@ public class GUI
 	//***************************************************
 	// Frame 11 - Modify Contacts screen
 		
-		JPanel panel11a = new JPanel (new GridLayout (2, 4, 2, 5)); // you must have at least 1 panel for your object
-		JPanel panel11b = new JPanel (new GridLayout (2, 4, 2, 5)); // you must have at least 1 panel for your object
-		JPanel panel11c = new JPanel (new GridLayout (2, 1, 2, 5)); // you must have at least 1 panel for your object
-		JPanel main11 = new JPanel(new GridLayout (5, 1));
+		JPanel panel11a = new JPanel (new GridLayout (2, 4, 2, 5)); 
+		JPanel panel11b = new JPanel (new GridLayout (2, 4, 2, 5));  
+		JPanel panel11c = new JPanel (new GridLayout (2, 1, 2, 5));  
+		JPanel panel11d = new JPanel (new GridLayout (0,3));  
+		JPanel panel11e = new JPanel (new GridLayout (3,1));  
+		JPanel main11 = new JPanel(new GridLayout (4, 1));
 		JLabel lblTitle11 = new JLabel ("Enter Contact To Modify", JLabel.CENTER);
+		JLabel b11a = new JLabel ("");
+		JLabel b11b = new JLabel ("");
 		lblTitle11.setFont (new Font ("Serif", Font.BOLD, 24));
 
 		JButton btnExit11 = new JButton ("Back");
 		JButton btnMod11 = new JButton ("Make Changes");
+		JButton btnEnter11 = new JButton ("Find Contact");
+		
+		getContact11 = new JTextField ("");
 		
 		//ButtonHandler11 for frame 11
 		ButtonHandler11 onClick11 = new ButtonHandler11 ();		
 		btnMod11.addActionListener (onClick11);
 		btnExit11.addActionListener (onClick11);
+		btnEnter11.addActionListener (onClick11);
 		
 		JLabel lbl11a = new JLabel ("First Name"); // text on label
 		JLabel lbl11b = new JLabel ("Last Name"); // text on label
@@ -574,7 +590,7 @@ public class GUI
 		// sets frame size
 		frame11.getContentPane ().add(main11);
 		frame11.setSize(800,500);
-		frame11.setVisible (false);
+		frame11.setVisible (true);
 	
 	
 	//***************************************************
@@ -778,7 +794,6 @@ public class GUI
 						String key = txtInput9a.getText();
 						String insert = txtInput9b.getText().concat("," + txtInput9c.getText()).concat("," + txtInput9d.getText()).concat("," + txtInput9e.getText()).concat("," + txtInput9f.getText());
 						phonebook.put(key, insert);
-						System.out.println(key.concat("," + phonebook.get(key)));
 						JOptionPane.showMessageDialog(null,"Contact Successfully added");
 					}
 				}
@@ -850,14 +865,12 @@ public class GUI
 			{
 				String key = txtInput12.getText();
 				boolean find = phonebook.contains(key);
-				System.out.println(find);
 				try{
 					if (key.equals("")){
 						JOptionPane.showMessageDialog(null,"Error: Invalid name!");
 					}
 					
 					else if (find == true){
-						System.out.println(key);
 						phonebook.delete(key);
 						JOptionPane.showMessageDialog(null,"Contact Successfully Deleted");
 					}
@@ -885,30 +898,22 @@ public class GUI
 			String text = e.getActionCommand();
 			if (text.equals ("Back"))
 			{
-				frame12.setVisible (false);
-				frame5.setVisible (true);
+				frame4.setVisible (false);
+				frame3.setVisible (true);
 			}
 			else{
-				int count = -1;
-				if (text.equals("A")) {	count = 0;} else if (text.equals("B")) {count = 1;} 
-				if (text.equals("C")) {count = 2;} else if (text.equals("D")) {count = 3;} 
-				if (text.equals("E")) {count = 4;} else if (text.equals("F")) {count = 5;}
-				if (text.equals("G")) { count = 6; } else if (text.equals("H")) {count = 7;} 
-				if (text.equals("I")) { count = 8;} else if (text.equals("J")) {count = 9;}
-				else if (text.equals("K")) { count = 10;} else if (text.equals("L")) {count = 11;} 
-				else if (text.equals("M")) { count = 12; } else if (text.equals("N")) { count = 13;} 
-				else if (text.equals("O")) { count = 14; } else if (text.equals("P")) {count = 15;} 
-				else if (text.equals("Q")) { count = 16;} else if (text.equals("R")) {count = 17;} 
-				else if (text.equals("S")) {count = 18;} else if (text.equals("T")) {count = 19;} 
-				else if (text.equals("U")) {count = 20;} else if (text.equals("V")) {count = 21;} 
-				else if (text.equals("W")) {count = 22;} else if (text.equals("X")) {count = 23;} 
-				else if (text.equals("Y")) {count = 24;} else if (text.equals("Z")) {count = 25;}
-				int x = 10 * count, label = 0;
-				for (int i = x; i < x + 10; i++) {
-					names[label].setText(info[i][0]);
-					phone[label].setText(info[i][1]);
-					addresses[label].setText(info[i][2]);
-					label ++;
+				ArrayList find = phonebook.findAll(text);
+				String [] info = new String [5];
+				for (int i = 0; i < 10; i ++){
+					names[i].setText("");
+					phone[i].setText("");
+					addresses[i].setText("");
+				}
+				for (int i = 0; i < find.size(); i++) {
+					info = ((String) find.get(i)).split(",");
+					names[i].setText(info[0]);
+					phone[i].setText(info[1]);
+					addresses[i].setText(info[2] + ", " + info[3] + ", " +info[4]);
 				}
 			}
 		}
@@ -931,12 +936,12 @@ public class GUI
 						while (hf.hasNext()) {
 							String toadds = hf.nextLine();
 							String[] n = toadds.split(",");
-							String first = n[1].split(" ")[0];
-							String last = n[1].split(" ")[1];
+							String first = n[0].split(" ")[0];
+							String last = n[0].split(" ")[1];
 							info [i][0] = n[0];
 							info [i][1] = n[1];
 							info [i] [2] = n[2] + ", " + n[3]+ ", " + n[4];
-							String insert = last.concat("," + n[2]).concat("," + n[3]).concat("," + n[4]);
+							String insert = last.concat("," + n[1]).concat("," + n[2]).concat("," + n[3]).concat("," + n[4]);
 							phonebook.put(first, insert);
 							i ++;
 						}
