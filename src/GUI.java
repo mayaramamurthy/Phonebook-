@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
-import java.awt.Font;
+
+import java.awt.*;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,41 +9,17 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
+import javax.swing.*;
 
 public class GUI 
 {
 //	declare class level objects and variables
 	static JButton btnSubmit1, btnView2, btnAdd2, btnExit1, btnExit2, btnShow3, btnExit3, btnSearch3, btnNumber5, btnExit5, btnName5, btnExit6, btnEnter6,btnExit7, btnEnter7, btnAdd8, btnMod8, btnExit8 ,btnEdit10, btnDelete10, btnExit10, btnDelete12, btnExit12;
-	static JButton movie1, movie2, movie3, movie4,  movie5, movie6, movie7, movie8, movie9, movie10, movie11, movie12;
-	static JLabel lblTitle1, lblIntro1, lblInfo1, lblBlank1a, lblBlank1b, lblBlank2a, lblBlank2b, lblBlank2c, lblBlank2d;
-	static JLabel lblTitle2, lblTitle3, lblInfo3;
+	static JLabel lblTitle1, lblIntro1, lblInfo1, lblBlank1a, lblBlank1b, lblBlank2a, lblBlank2b, lblBlank2c, lblBlank2d, lblTitle2, lblTitle3, lblInfo3,lblDisplay6a, lblDisplay6b, lblDisplay6c, lblDisplay6d, lblDisplay7a, lblDisplay7b, lblDisplay7c, lblDisplay7d;
 	static JLabel n1, p1, a1, n2, p2, a2, n3, p3, a3, n4, p4 , a4, n5, p5,a5, n6, p6, a6, n7, p7,a7, n8, p8,  a8,n9, p9,a9, n10,  p10,a10;
 	static JLabel names [] = new JLabel [10], addresses[] = new JLabel [10], phone [] = new JLabel [10];
-	static JTextField txtInput1, txtInput9a, txtInput9b, txtInput9c, txtInput9d, txtInput9e, txtInput9f,txtInput11a, txtInput11b, txtInput11c, txtInput11d, txtInput11e, txtInput11f, txtInput12, getContact11;
-	static int realPass = 1234, counter = 1;
-	static JFrame frame1 = new JFrame ("Phonebook+ Intro");
-	static JFrame frame2 = new JFrame ("Navigation - Frame 2");
-	static JFrame frame3 = new JFrame ("View Contacts");
-	static JFrame frame4 = new JFrame ("View All Contacts");
-	static JFrame frame5 = new JFrame ("Edit a Movie - Frame 5");
-	static JFrame frame6 = new JFrame ("Add a Movie- Frame 6");
-	static JFrame frame7 = new JFrame ("Edit Contacts");
-	static JFrame frame8 = new JFrame ("Edit Contacts");
-	static JFrame frame9 = new JFrame ("Add Contacts");
-	static JFrame frame10 = new JFrame ("Modify Contacts");
-	static JFrame frame11 = new JFrame ("Edit Contacts");
-	static JFrame frame12 = new JFrame ("Delete Contacts");
-	static JFrame frame13 = new JFrame ("Delete Contacts");
-
+	static JTextField txtInput1, txtInput6, txtInput7, txtInput9a, txtInput9b, txtInput9c, txtInput9d, txtInput9e, txtInput9f,txtInput11a, txtInput11b, txtInput11c, txtInput11d, txtInput11e, txtInput11f, txtInput12, getContact11;
+	static JFrame frame1 = new JFrame ("Phonebook+ Intro"),frame2 = new JFrame ("Navigation"),frame3 = new JFrame ("View Contacts"),frame4 = new JFrame ("View All Contacts"), frame5 = new JFrame ("Search Screen"),frame6 = new JFrame ("Search by Name"), frame7 = new JFrame ("Search by Number"),frame8 = new JFrame ("Edit Contacts"),frame9 = new JFrame ("Add Contacts"), frame10 = new JFrame ("Modify Contacts"),frame11 = new JFrame ("Edit Contacts"),frame12 = new JFrame ("Delete Contacts");
 	
 	static Contact contact = new Contact();
 	static makeContact con = new makeContact();
@@ -67,12 +44,9 @@ public class GUI
 		JPanel panel1b = new JPanel ();
 		JPanel panel1c = new JPanel ();
 		JPanel panel1d = new JPanel (new GridLayout (1, 3));
-		JPanel panel1e = new JPanel (new GridLayout (3, 3));
 		JPanel panel1f = new JPanel ();
 		JPanel main1 = new JPanel ();
-
-		//lblTitle1 = new JLabel ("Movie Database Login:", JLabel.CENTER);
-		//lblTitle1.setFont (new Font ("Serif", Font.BOLD, 24));	
+	
 		lblIntro1 = new JLabel ("Enter the Password:", JLabel.CENTER);
 		txtInput1 = new JTextField ("");
 		txtInput1.setHorizontalAlignment (JTextField.CENTER);
@@ -86,9 +60,7 @@ public class GUI
 		ButtonHandler1 onClick1 = new ButtonHandler1 ();
 		btnSubmit1.addActionListener (onClick1);
 		btnSubmit1.setLocation(300, 500);
-		btnExit1.addActionListener (onClick1);
-		
-		
+		btnExit1.addActionListener (onClick1);		
 
 		// add components to content pane
 		panel1a.add(lblTitle1);
@@ -109,9 +81,6 @@ public class GUI
 		// frame 2 - Navigation Main Screen Menu
 		JPanel panel2a = new JPanel (new GridLayout(1,1));
 		JPanel panel2b = new JPanel (new GridLayout(3,3));
-		JPanel panel2c = new JPanel (new GridLayout(1,1));
-		JPanel panel2d = new JPanel (new GridLayout(1,1));
-		JPanel panel2e = new JPanel (new GridLayout(1,3));
 		
 		JPanel main2 = new JPanel (new GridLayout (5, 1));
 		lblTitle2 = new JLabel ("Phonebook+ Navigation Screen:", JLabel.CENTER);
@@ -141,14 +110,11 @@ public class GUI
 		//Frame 3 - View All Contacts
 		JPanel panel3a = new JPanel (new GridLayout(1,1));
 		JPanel panel3b = new JPanel (new GridLayout(3,3));
-		JPanel panel3c = new JPanel (new GridLayout(1,1));
-		JPanel panel3d = new JPanel (new GridLayout(1,1));
-		JPanel panel3e = new JPanel (new GridLayout(1,3));
 		
 		JPanel main3 = new JPanel (new GridLayout (5, 1));
 		lblTitle3 = new JLabel ("Browse Contacts:", JLabel.CENTER);
 		lblTitle3.setFont (new Font ("Serif", Font.BOLD, 24));	
-		btnShow3 = new JButton ("View Contacts");
+		btnShow3 = new JButton ("Display Contacts");
 		btnSearch3 = new JButton ("Search Contacts");
 		btnExit3 = new JButton ("Back");
 
@@ -212,7 +178,7 @@ public class GUI
 		JLabel name4b = new JLabel ("Name"); name4b.setFont (new Font ("Serif", Font.BOLD, 15));
 		JLabel numb4b = new JLabel ("Number"); numb4b.setFont (new Font ("Serif", Font.BOLD, 15));
 		JLabel addr4b = new JLabel ("Address"); addr4b.setFont (new Font ("Serif", Font.BOLD, 15));
-		JLabel b1 = new JLabel (""); JLabel b2 = new JLabel ("");
+
 		JLabel b3 = new JLabel (""); JLabel b4 = new JLabel ("");
 		JLabel b5 = new JLabel (""); JLabel b6 = new JLabel ("");
 		
@@ -281,7 +247,7 @@ public class GUI
 		panelM4c.add(panel4g);  panelM4c.add(panel4h);
 		panelM4d.add(panel4i); 	panelM4d.add(panel4j);
 		panelM4e.add(panel4k); 	panelM4e.add(panel4l);
-		panel4n.add(b5);	panel4n.add(b6);
+		panel4n.add(b5);		panel4n.add(b6);
 		panel4n.add(panel4m);
 		main4.add(panelM4a); main4.add(panelM4b); main4.add(panelM4c); main4.add(panelM4d); main4.add(panelM4e); main4.add(panel4n);
 		
@@ -293,9 +259,6 @@ public class GUI
 		// Frame 5 - Search Screen
 		JPanel panel5a = new JPanel (new GridLayout(1,1));
 		JPanel panel5b = new JPanel (new GridLayout(3,3));
-		JPanel panel5c = new JPanel (new GridLayout(1,1));
-		JPanel panel5d = new JPanel (new GridLayout(1,1));
-		JPanel panel5e = new JPanel (new GridLayout(1,3));
 		
 		JPanel main5 = new JPanel (new GridLayout (5, 1));
 		JLabel lblTitle5 = new JLabel ("Search Contacts By:", JLabel.CENTER);
@@ -304,7 +267,7 @@ public class GUI
 		btnNumber5 = new JButton ("Number");
 		btnExit5 = new JButton ("Back");
 
-		//ButtonHandler3 for frame 3
+		//ButtonHandler3 for frame 5
 		ButtonHandler5 onClick5 = new ButtonHandler5 ();
 		btnName5.addActionListener (onClick5);
 		btnNumber5.addActionListener (onClick5);
@@ -326,14 +289,18 @@ public class GUI
 		// Frame 6 - Search by Name
 		JPanel panel6a = new JPanel (new GridLayout(1,1));
 		JPanel panel6b = new JPanel (new GridLayout(3,2));
-		JPanel panel6c = new JPanel (new GridLayout(1,1));
-		JPanel panel6d = new JPanel (new GridLayout(1,1));
-		JPanel panel6e = new JPanel (new GridLayout(1,3));
+		JPanel panel6c = new JPanel (new GridLayout(4,1));
 		
 		JPanel main6 = new JPanel (new GridLayout (5, 1));
 		JLabel lblTitle6 = new JLabel ("Search Contacts By Name:", JLabel.CENTER);
 		lblTitle6.setFont (new Font ("Serif", Font.BOLD, 24));	
-		JTextField txtInput6 = new JTextField ("");
+		txtInput6 = new JTextField ("");
+		
+		lblDisplay6a = new JLabel ("");	lblDisplay6a.setFont (new Font ("Serif", Font.BOLD, 17)); lblDisplay6a.setHorizontalAlignment(JLabel.CENTER);
+		lblDisplay6b = new JLabel (""); lblDisplay6b.setFont (new Font ("Serif", Font.BOLD, 17)); lblDisplay6b.setHorizontalAlignment(JLabel.CENTER);
+		lblDisplay6c = new JLabel (""); lblDisplay6c.setFont (new Font ("Serif", Font.BOLD, 17)); lblDisplay6c.setHorizontalAlignment(JLabel.CENTER);
+		lblDisplay6d = new JLabel ("");	lblDisplay6d.setFont (new Font ("Serif", Font.BOLD, 17)); lblDisplay6d.setHorizontalAlignment(JLabel.CENTER);
+
 		txtInput6.setHorizontalAlignment (JTextField.CENTER);
 		btnEnter6 = new JButton ("Enter");
 		btnExit6 = new JButton ("Back");
@@ -347,29 +314,37 @@ public class GUI
 		panel6b.add(txtInput6);
 		panel6b.add(btnEnter6);
 		panel6b.add(btnExit6);
+		panel6c.add(lblDisplay6a);
+		panel6c.add(lblDisplay6b);
+		panel6c.add(lblDisplay6c);
+		panel6c.add(lblDisplay6d);
 		main6.add(panel6a);
 		main6.add(panel6b);
+		main6.add(panel6c);
 
 		frame6.getContentPane ().add(main6);
-		frame6.setSize(400,450);
+		frame6.setSize(400,500);
 		frame6.setVisible (false);
 		
 		//***************************************************
 		// Frame 7 - Search by Number
 		JPanel panel7a = new JPanel (new GridLayout(1,1));
 		JPanel panel7b = new JPanel (new GridLayout(3,2));
-		JPanel panel7c = new JPanel (new GridLayout(1,1));
-		JPanel panel7d = new JPanel (new GridLayout(1,1));
-		JPanel panel7e = new JPanel (new GridLayout(1,3));
+		JPanel panel7c = new JPanel (new GridLayout(4,1));
 		
 		JPanel main7 = new JPanel (new GridLayout (5, 1));
 		JLabel lblTitle7 = new JLabel ("Search Contacts By Number:", JLabel.CENTER);
 		lblTitle7.setFont (new Font ("Serif", Font.BOLD, 24));	
-		JTextField txtInput7 = new JTextField ("");
+		txtInput7 = new JTextField ("");
 		txtInput7.setHorizontalAlignment (JTextField.CENTER);
 		btnEnter7 = new JButton ("Enter");
 		btnExit7 = new JButton ("Back");
 
+		lblDisplay7a = new JLabel ("");	lblDisplay7a.setFont (new Font ("Serif", Font.BOLD, 17)); lblDisplay7a.setHorizontalAlignment(JLabel.CENTER);
+		lblDisplay7b = new JLabel (""); lblDisplay7b.setFont (new Font ("Serif", Font.BOLD, 17)); lblDisplay7b.setHorizontalAlignment(JLabel.CENTER);
+		lblDisplay7c = new JLabel (""); lblDisplay7c.setFont (new Font ("Serif", Font.BOLD, 17)); lblDisplay7c.setHorizontalAlignment(JLabel.CENTER);
+		lblDisplay7d = new JLabel ("");	lblDisplay7d.setFont (new Font ("Serif", Font.BOLD, 17)); lblDisplay7d.setHorizontalAlignment(JLabel.CENTER);
+		
 		//ButtonHandler3 for frame 3
 		ButtonHandler7 onClick7 = new ButtonHandler7 ();
 		btnEnter7.addActionListener (onClick7);
@@ -379,20 +354,22 @@ public class GUI
 		panel7b.add(txtInput7);
 		panel7b.add(btnEnter7);
 		panel7b.add(btnExit7);
+		panel7c.add(lblDisplay7a);
+		panel7c.add(lblDisplay7b);
+		panel7c.add(lblDisplay7c);
+		panel7c.add(lblDisplay7d);
 		main7.add(panel7a);
 		main7.add(panel7b);
+		main7.add(panel7c);
 
 		frame7.getContentPane ().add(main7);
 		frame7.setSize(400,450);
 		frame7.setVisible (false);
 		
 		//***************************************************
-		// Frame 8 - EditContacts
+		// Frame 8 - Edit Contacts
 		JPanel panel8a = new JPanel (new GridLayout(1,1));
 		JPanel panel8b = new JPanel (new GridLayout(3,3));
-		JPanel panel8c = new JPanel (new GridLayout(1,1));
-		JPanel panel8d = new JPanel (new GridLayout(1,1));
-		JPanel panel8e = new JPanel (new GridLayout(1,3));
 		
 		JPanel main8 = new JPanel (new GridLayout (5, 1));
 		JLabel lblTitle8 = new JLabel ("Edit Contacts:", JLabel.CENTER);
@@ -488,9 +465,6 @@ public class GUI
 		// Frame 10 - Modify Contacts screen
 		JPanel panel10a = new JPanel (new GridLayout(1,1));
 		JPanel panel10b = new JPanel (new GridLayout(3,3));
-		JPanel panel10c = new JPanel (new GridLayout(1,1));
-		JPanel panel10d = new JPanel (new GridLayout(1,1));
-		JPanel panel10e = new JPanel (new GridLayout(1,3));
 		
 		JPanel main10 = new JPanel (new GridLayout (5, 1));
 		JLabel lblTitle10 = new JLabel ("Edit Contacts:", JLabel.CENTER);
@@ -522,13 +496,9 @@ public class GUI
 		
 		JPanel panel11a = new JPanel (new GridLayout (2, 4, 2, 5)); 
 		JPanel panel11b = new JPanel (new GridLayout (2, 4, 2, 5));  
-		JPanel panel11c = new JPanel (new GridLayout (2, 1, 2, 5));  
-		JPanel panel11d = new JPanel (new GridLayout (0,3));  
-		JPanel panel11e = new JPanel (new GridLayout (3,1));  
+		JPanel panel11c = new JPanel (new GridLayout (2, 1, 2, 5));    
 		JPanel main11 = new JPanel(new GridLayout (4, 1));
 		JLabel lblTitle11 = new JLabel ("Enter Contact To Modify", JLabel.CENTER);
-		JLabel b11a = new JLabel ("");
-		JLabel b11b = new JLabel ("");
 		lblTitle11.setFont (new Font ("Serif", Font.BOLD, 24));
 
 		JButton btnExit11 = new JButton ("Back");
@@ -590,17 +560,13 @@ public class GUI
 		// sets frame size
 		frame11.getContentPane ().add(main11);
 		frame11.setSize(800,500);
-		frame11.setVisible (true);
+		frame11.setVisible (false);
 	
 	
 	//***************************************************
 	// Frame 12 - Delete Contact screen
 	JPanel panel12a = new JPanel (new GridLayout(1,1));
 	JPanel panel12b = new JPanel (new GridLayout(3,2));
-	JPanel panel12c = new JPanel (new GridLayout(1,1));
-	JPanel panel12d = new JPanel (new GridLayout(1,1));
-	JPanel panel12e = new JPanel (new GridLayout(1,3));
-	
 	JPanel main12 = new JPanel (new GridLayout (5, 1));
 	JLabel lblTitle12 = new JLabel ("Delete Contacts By Name:", JLabel.CENTER);
 	lblTitle12.setFont (new Font ("Serif", Font.BOLD, 24));	
@@ -674,7 +640,7 @@ public class GUI
 		public void actionPerformed (ActionEvent e)
 		{
 			String text3 = e.getActionCommand();
-			if (text3.equals("View Contacts"))
+			if (text3.equals("Display Contacts"))
 			{
 				frame3.setVisible(false);
 				frame4.setVisible(true);
@@ -745,15 +711,23 @@ public class GUI
 			String text3 = e.getActionCommand();
 			if (text3.equals("Enter"))
 			{
-				System.out.println(txtInput9a.getText());
-				// get the text from the name textfield for the key
-				// call on the other text boxes for the value (see below with the concat)
-				// call get with number as key (I think?) as such phonebook.display(Key key)
+				String key = txtInput6.getText();
+				try{
+					String[] info = phonebook.get(key).split(",");
+					lblDisplay6a.setText(key + " " + info[0]);
+					lblDisplay6b.setText(info[1] );
+					lblDisplay6c.setText(info[2]);
+					lblDisplay6d.setText(info[3] + ", " + info[4]);
+				}
+				catch (NullPointerException err){
+					JOptionPane.showMessageDialog(null,"Error: Contact " + key + " does not exist");
+				}
 			}
 			else if (text3.equals ("Back"))
 			{
 				frame6.setVisible (false);
 				frame5.setVisible (true);
+				lblDisplay6a.setText("");	lblDisplay6b.setText("");	lblDisplay6c.setText("");	lblDisplay6d.setText("");
 			}
 		}
 	}
@@ -765,12 +739,29 @@ public class GUI
 			String text3 = e.getActionCommand();
 			if (text3.equals("Enter"))
 			{
-				// get the text from the number textfield for the key
-				// call on the other text boxes for the value (see below with the concat)
-				// call get with number as key (I think?) as such phonebook.display(Key key)
+				String key = txtInput7.getText();
+				try {
+					if (key.length() > 7){
+						String[] info = phonebook.findNum(key).split(",");
+						lblDisplay7a.setText(info[0]);
+						lblDisplay7b.setText(info[1] );
+						lblDisplay7c.setText(info[2]);
+						lblDisplay7d.setText(info[3] + ", " + info[4]);
+					}
+					else {
+						JOptionPane.showMessageDialog(null,"Error: Invalid Number");
+					}
+				}
+				catch (NullPointerException err){
+					JOptionPane.showMessageDialog(null,"Error: Contact " + key + " does not exist");					
+				}
+				catch (ArrayIndexOutOfBoundsException err){
+					JOptionPane.showMessageDialog(null,"Error: Contact " + key + " does not exist");					
+				}
 			}
 			else if (text3.equals ("Back"))
 			{
+				lblDisplay7a.setText("");	lblDisplay7b.setText("");	lblDisplay7c.setText("");	lblDisplay7d.setText("");
 				frame7.setVisible (false);
 				frame5.setVisible (true);
 			}
@@ -806,8 +797,8 @@ public class GUI
 			}
 			else if (text3.equals ("Back"))
 			{
-				frame10.setVisible (false);
-				frame8.setVisible (true);
+				frame8.setVisible (false);
+				frame2.setVisible (true);
 			}
 		}
 	}
@@ -830,7 +821,7 @@ public class GUI
 			else if (text3.equals ("Back"))
 			{
 				frame10.setVisible (false);
-				frame8.setVisible (true);
+				frame2.setVisible (true);
 			}
 		}
 	}
@@ -840,12 +831,27 @@ public class GUI
 		public void actionPerformed (ActionEvent e)
 		{
 			String text3 = e.getActionCommand();
+			String key = txtInput11a.getText();
 			if (text3.equals("Make Changes")) // makes the given changes
 			{
-				// get the text from the first name textbook for the key
-				// call on the other text boxes for the value (see below with the concat)
-				// call modify as a similar way: phonebook.Modify(key, value)
-				// shall add the value
+				try {
+					if (txtInput11a.getText().equals("") |txtInput11b.getText().equals("") | txtInput11c.getText().equals("") | txtInput11d.getText().equals("") |txtInput11e.getText().equals("") |txtInput11f.getText().equals("")) {
+						JOptionPane.showMessageDialog(null,"Error: Missing Information!");
+					}
+					else if (txtInput11c.getText().length() < 7){
+						JOptionPane.showMessageDialog(null,"Error: Invalid Phone Number!");						
+					}
+					else if (phonebook.contains(key)){
+						String insert = txtInput11b.getText().concat("," + txtInput11c.getText()).concat("," + txtInput11d.getText()).concat("," + txtInput11e.getText()).concat("," + txtInput11f.getText());
+						phonebook.Modify(key, insert);
+						JOptionPane.showMessageDialog(null,"Contact Successfully Modified");
+					}
+					else if (phonebook.contains(key) == false){JOptionPane.showMessageDialog(null,"Contact Does Not Exist");}
+				}
+				catch (Exception error){
+					JOptionPane.showMessageDialog(null,"Error: Something Went Wrong...");
+					
+				}
 			}
 			// allows you to go back to the prior screen
 			else if (text3.equals ("Back"))
@@ -885,7 +891,7 @@ public class GUI
 			else if (text3.equals ("Back"))
 			{
 				frame12.setVisible (false);
-				frame5.setVisible (true);
+				frame10.setVisible (true);
 			}
 		}
 	}

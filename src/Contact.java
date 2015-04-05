@@ -88,6 +88,7 @@ public class Contact implements Comparable<Contact> {
 
 	public static class Modifications<Key extends Comparable<Key>, Value> { // the binarysearchtree class
 		private Node root,r; // the root is the first node
+		public String findN;
 		public ArrayList find = new ArrayList ();
 		private class Node {
 			private Key key; // declares the key
@@ -218,6 +219,24 @@ public class Contact implements Comparable<Contact> {
 			String contact = "The contact information is " + key + "," + info;
 			return contact;
 		}
+		
+		public String findNum (String y){
+			findN = "";
+			return findNumber (root, y);
+		}
+		
+		public String findNumber (Node x, String y){
+			if (x == null){
+				find = null;
+			}
+			if (((String) x.val).contains(y)){
+				findN = x.key + " " + get(x.key);
+				System.out.println(findN);
+			}
+			if (x.left != null){findNumber(x.left, y);}
+			if (x.right != null){findNumber(x.right, y);}
+			return findN;
+		}
 
 		public void Modify(Key key, Value value) {
 			delete(key);
@@ -252,6 +271,7 @@ public class Contact implements Comparable<Contact> {
 		String search = "Jane", l = "Aaron";
 		String todelete = "Abe";
 		String todisplay = "Abe";
+		String a = "";
 		for (int i = 0; i < nameFile.length(); i++) {
 			while (hf.hasNext()) {
 				String toadds = hf.nextLine();
@@ -263,18 +283,21 @@ public class Contact implements Comparable<Contact> {
 				// Contact(n[0],n[1],Double.parseDouble(n[2]),n[3],n[4],n[5]);
 				phonebook.put(first, insert);
 				l = first;
+				a = n[1];
 			}
 		}
-		System.out.println(l.toString() + " " + phonebook.get(l));
-		System.out.println(search.concat("," + phonebook.get(search)));
-		System.out.println(phonebook.get("Jane"));
-		System.out.println(phonebook.get(todelete));
-		phonebook.delete(todelete);
-		System.out.println(phonebook.get(todelete));
-		phonebook.display(todisplay);
+
+		System.out.println(phonebook.findNum(a));
+		//System.out.println(l.toString() + " " + phonebook.get(l));
+		//System.out.println(search.concat("," + phonebook.get(search)));
+		//System.out.println(phonebook.get("Jane"));
+		//System.out.println(phonebook.get(todelete));
+		//phonebook.delete(todelete);
+		//System.out.println(phonebook.get(todelete));
+		//phonebook.display(todisplay);
 		ArrayList find = phonebook.findAll("Z");
 		for (int i = 0; i < find.size();i ++){
-			System.out.println(find.get(i));
+		//	System.out.println(find.get(i));
 		}
 	}
 }
