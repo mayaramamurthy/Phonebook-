@@ -1,0 +1,4 @@
+COMP SCI 2XB3
+Team members:(1309110 - Maya Ramamurthy - Project Leader, getting the contacts from the datasets, implementing and testing the GUI),(1323089 Ñ Manaar Hyder - setting up the client ADT, implementing the sorting algorithm and testing the GUI),(1309768 - Diana Saweris Ð Log Admin, implementing the modifying, adding, removing, searching and displaying methods (Contact class) and testing the GUI).
+We, Maya Ramamurthy, Manaar Hyder and Diana Saweris admit that the work being submitted by us on Tuesday, April 7th, 2015 at 3:15 PM is our group work.
+

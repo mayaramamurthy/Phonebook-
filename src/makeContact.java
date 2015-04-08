@@ -3,9 +3,13 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-
+// uses csv files from http://introcs.cs.princeton.edu/java/data/
 public class makeContact {
-	static String [][] contact;
+	private static String [][] contact, postal;
+	private static File nameFile, phoneFile, surnameFile, streetFile, contactFile, phoneNumFile;
+	private static Scanner nf, pf, sf, stf, pnf;
+	private static String [] first, last, street, temp, phone, pnumbers;
+	
 	public static void contactToFile() throws FileNotFoundException{
 		PrintWriter out = new PrintWriter("data/contact.txt");
 		String [][] contact = readFiles();
@@ -15,28 +19,30 @@ public class makeContact {
 		out.close();
 	}
 
-	public static String[][] readFiles() throws FileNotFoundException{
-		File nameFile = new File("data/names.csv");	
-		File phoneFile = new File("data/phone-na.csv");	
-		File surnameFile = new File("data/surnames.csv");	
-		File streetFile = new File("data/street.txt");	
-		File contactFile = new File("data/contact.txt");
-		File phoneNumFile = new File("data/phonenumbers.txt");			
+	private static String[][] readFiles() throws FileNotFoundException{
+		nameFile = new File("data/names.csv");	
+		phoneFile = new File("data/phone-na.csv");	
+		surnameFile = new File("data/surnames.csv");	
+		streetFile = new File("data/street.txt");	
+		contactFile = new File("data/contact.txt");
+		phoneNumFile = new File("data/phonenumbers.txt");			
 	
-		Scanner nf = new Scanner(nameFile);
-		Scanner pf = new Scanner(phoneFile);
-		Scanner sf = new Scanner(surnameFile);
-		Scanner stf = new Scanner(streetFile);
-		Scanner pnf = new Scanner(phoneNumFile);
+		// scanner to read in files
+		nf = new Scanner(nameFile);
+		pf = new Scanner(phoneFile);
+		sf = new Scanner(surnameFile);
+		stf = new Scanner(streetFile);
+		pnf = new Scanner(phoneNumFile);
 		
-		String [] first = new String [260];
-		String [] last = new String [88799];
-		String [] street = new String[400];
-		String [][] postal = new String [1084][2];
-		String [] temp = new String [3];
-		String [] phone = new String [1084];
-		contact =  new String[259][6];
-		String []  pnumbers =  new String[60];
+		// arrays to read in files
+		first = new String [260];
+		last = new String [88799];
+		street = new String[400];
+		postal = new String [1084][2];
+		temp = new String [3];
+		phone = new String [1084];
+		contact = new String[259][6];
+		pnumbers =  new String[60];
 		
 		
 		int count = 0;
@@ -69,7 +75,7 @@ public class makeContact {
 		while(pf.hasNextLine()){
 			String line = pf.nextLine();
 			temp = line.split(",");
-			phone [count] =temp[0];//(int) Math.round(Math.random() * 999999);	// generates the phone number
+			phone [count] =temp[0];
 			postal[count][0] = temp[1];
 			postal[count][1] = temp[2];
 			count ++;			
@@ -92,8 +98,6 @@ public class makeContact {
 			int x = (int) Math.round(Math.random() * 1083);
 			contact[i][4] = postal[x][0];	// generates city
 			contact[i][5] = postal[x][1];	// generates state
-			//System.out.println(contact[i][0]);
-		//	System.out.println(contact[i][0] +  " " + contact [i][1] +  " " + contact [i][2] +  " " + contact [i][3]+  " " + contact [i][4]+  " " + contact [i][5]);
 		}
 		return contact;
 	}
@@ -101,7 +105,7 @@ public class makeContact {
 	public static String [][] returnContact(){
 		return contact;
 	}
-	public static void main(String[] args) throws FileNotFoundException {
+	private static void main(String[] args) throws FileNotFoundException {
 		contactToFile();
 
 	}
